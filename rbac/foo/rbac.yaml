@@ -1,8 +1,28 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: foo-dev
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: foo-prod
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: foo-qa
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: foo-stage
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: reader
-  namespace: bar
+  namespace: foo
 subjects:
 - kind: ServiceAccount
   name: sa-reader
@@ -10,11 +30,12 @@ roleRef:
   kind: ClusterRole
   name: view
   apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: admin
-  namespace: bar
+  namespace: foo
 subjects:
 - kind: ServiceAccount
   name: sa-admin
@@ -22,11 +43,12 @@ roleRef:
   kind: ClusterRole
   name: admin
   apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: reader
-  namespace: bar
+  namespace: foo
 subjects:
 - kind: ServiceAccount
   name: sa-reader
@@ -34,11 +56,12 @@ roleRef:
   kind: ClusterRole
   name: view
   apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: dev
-  namespace: bar
+  namespace: foo
 subjects:
 - kind: ServiceAccount
   name: sa-dev
@@ -46,11 +69,12 @@ roleRef:
   kind: ClusterRole
   name: edit
   apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: admin
-  namespace: bar
+  namespace: foo
 subjects:
 - kind: ServiceAccount
   name: sa-admin
@@ -58,11 +82,12 @@ roleRef:
   kind: ClusterRole
   name: admin
   apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: admin
-  namespace: bar
+  namespace: foo
 subjects:
 - kind: ServiceAccount
   name: sa-admin
@@ -70,6 +95,7 @@ roleRef:
   kind: ClusterRole
   name: admin
   apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -77,16 +103,17 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: sa-cluster-admin
-  namespace: bar
+  namespace: foo
 roleRef:
   kind: ClusterRole
   name: cluster-admin
   apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: reader
-  namespace: bar
+  namespace: foo
 subjects:
 - kind: ServiceAccount
   name: sa-reader
@@ -94,11 +121,12 @@ roleRef:
   kind: ClusterRole
   name: view
   apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: admin
-  namespace: bar
+  namespace: foo
 subjects:
 - kind: ServiceAccount
   name: sa-admin
@@ -106,3 +134,48 @@ roleRef:
   kind: ClusterRole
   name: admin
   apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-admin
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-reader
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-admin
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-reader
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-dev
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-admin
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-admin
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-reader
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-cluster-admin
