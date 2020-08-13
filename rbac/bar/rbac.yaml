@@ -22,7 +22,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: reader
-  namespace: bar
+  namespace: bar-dev
 subjects:
 - kind: ServiceAccount
   name: sa-reader
@@ -34,21 +34,8 @@ roleRef:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: admin
-  namespace: bar
-subjects:
-- kind: ServiceAccount
-  name: sa-admin
-roleRef:
-  kind: ClusterRole
-  name: admin
-  apiGroup: rbac.authorization.k8s.io
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
   name: reader
-  namespace: bar
+  namespace: bar-qa
 subjects:
 - kind: ServiceAccount
   name: sa-reader
@@ -61,7 +48,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: dev
-  namespace: bar
+  namespace: bar-dev
 subjects:
 - kind: ServiceAccount
   name: sa-dev
@@ -74,7 +61,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: admin
-  namespace: bar
+  namespace: bar-dev
 subjects:
 - kind: ServiceAccount
   name: sa-admin
@@ -87,7 +74,33 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: admin
-  namespace: bar
+  namespace: bar-qa
+subjects:
+- kind: ServiceAccount
+  name: sa-admin
+roleRef:
+  kind: ClusterRole
+  name: admin
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: admin
+  namespace: bar-stage
+subjects:
+- kind: ServiceAccount
+  name: sa-admin
+roleRef:
+  kind: ClusterRole
+  name: admin
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: admin
+  namespace: bar-prod
 subjects:
 - kind: ServiceAccount
   name: sa-admin
@@ -103,79 +116,104 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: sa-cluster-admin
-  namespace: bar
+  namespace: bar-prod
 roleRef:
   kind: ClusterRole
   name: cluster-admin
   apiGroup: rbac.authorization.k8s.io
 ---
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: reader
-  namespace: bar
-subjects:
-- kind: ServiceAccount
-  name: sa-reader
-roleRef:
-  kind: ClusterRole
-  name: view
-  apiGroup: rbac.authorization.k8s.io
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: admin
-  namespace: bar
-subjects:
-- kind: ServiceAccount
-  name: sa-admin
-roleRef:
-  kind: ClusterRole
-  name: admin
-  apiGroup: rbac.authorization.k8s.io
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: sa-admin
+  namespace: bar-dev
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: sa-reader
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: sa-admin
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: sa-reader
+  namespace: bar-dev
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: sa-dev
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: sa-admin
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: sa-admin
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: sa-reader
+  namespace: bar-dev
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: sa-cluster-admin
+  namespace: bar-dev
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-admin
+  namespace: bar-qa
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-reader
+  namespace: bar-qa
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-dev
+  namespace: bar-qa
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-cluster-admin
+  namespace: bar-qa
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-admin
+  namespace: bar-stage
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-reader
+  namespace: bar-stage
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-dev
+  namespace: bar-stage
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-cluster-admin
+  namespace: bar-stage
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-admin
+  namespace: bar-prod
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-reader
+  namespace: bar-prod
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-dev
+  namespace: bar-prod
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-cluster-admin
+  namespace: bar-prod
