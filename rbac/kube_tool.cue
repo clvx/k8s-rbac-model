@@ -1,8 +1,8 @@
 package kube
 
-objects: [ for v in objectSets for x in v { x } ]
+objects: [ for v in objectSets for x in v {x}]
 
 objectSets: [
-    roleBinding,
-    clusterRoleBinding,
+	roleBinding,
+	clusterRoleBinding,
 ]
