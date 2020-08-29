@@ -1,30 +1,16 @@
 package kube
 
 roleBinding: admin: {
-	apiVersion: "rbac.authorization.k8s.io/v1"
-	kind:       "RoleBinding"
 	metadata: name: "admin"
 	subjects: [{
-		kind:     "Group"
-		name:     "<objectId>"
-		apiGroup: "rbac.authorization.k8s.io"
+		name: "<objectId>"
 	}]
-	roleRef: {
-		kind: "ClusterRole"
-		name: "admin"
-	}
+	roleRef: name: "admin"
 }
 roleBinding: reader: {
-	apiVersion: "rbac.authorization.k8s.io/v1"
-	kind:       "RoleBinding"
 	metadata: name: "reader"
 	subjects: [{
-		kind:     "Group"
-		name:     "<objectId>"
-		apiGroup: "rbac.authorization.k8s.io"
+		name: "<objectId>"
 	}]
-	roleRef: {
-		kind: "ClusterRole"
-		name: "view"
-	}
+	roleRef: name: "view"
 }
