@@ -60,3 +60,48 @@ access to this environment.
 | dev | x |  |  |  |
 | viewer |  | x |  |  |
 | bot |  | x | x | x |
+
+
+## Cuelang
+
+
+TODO: THIS COULD BE WAAAAAAAAY BETTER.
+
+Cue is a data validation languake with awesome support for kubernetes objects. 
+This project gives a glance of its capabilities.
+
+    rbac/
+    ├── bar
+    │   ├── dev
+    │   │   └── k8s.cue
+    │   ├── k8s.cue
+    │   ├── prod
+    │   │   └── k8s.cue
+    │   ├── qa
+    │   │   └── k8s.cue
+    │   └── stage
+    │       └── k8s.cue
+    ├── dump_tool.cue
+    ├── foo
+    │   ├── dev
+    │   │   └── k8s.cue
+    │   ├── k8s.cue
+    │   ├── prod
+    │   │   └── k8s.cue
+    │   ├── qa
+    │   │   └── k8s.cue
+    │   └── stage
+    │       └── k8s.cue
+    ├── k8s.cue
+    ├── k8s_def.cue
+    └── kube_tool.cue
+
+To generate Kubernetes objects:
+
+    project=
+    namespace=
+    # For cluster role bindings
+    cue cmd dump ./rbac/${project} > crb-${project}.yaml
+
+    # For role bindings in a specific namespace
+    cue cmd dump ./rbac/${project}/${namespace} > rb-${project}-{namespace}.yaml
