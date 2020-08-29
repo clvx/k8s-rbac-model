@@ -7,3 +7,5 @@ clusterRoleBinding: clusteradmin: {
 	}]
 	roleRef: name: "cluster-admin"
 }
+
+#Project: "foo"
