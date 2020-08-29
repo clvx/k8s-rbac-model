@@ -1,11 +1,18 @@
 PROJECT?=
 PROJECTDIR=./${PROJECT}
 NS_PREFIX=prod stage qa dev
+
 bootstrap-ns:
 	@kubectl create namespace ${PROJECT}-dev
 	@kubectl create namespace ${PROJECT}-qa
 	@kubectl create namespace ${PROJECT}-stage
 	@kubectl create namespace ${PROJECT}-prod
+
+clean-ns:
+	@kubectl delete namespace ${PROJECT}-dev
+	@kubectl delete namespace ${PROJECT}-qa
+	@kubectl delete namespace ${PROJECT}-stage
+	@kubectl delete namespace ${PROJECT}-prod
 
 bootstrap-rb:
 	@find ${PROJECTDIR} -type d -exec cue cmd dumpy {} \;
