@@ -7,3 +7,6 @@ roleBinding: admin: {
 	}]
 	roleRef: name: "admin"
 }
+
+
+#Namespace: "prod"

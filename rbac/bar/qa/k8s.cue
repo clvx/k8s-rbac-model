@@ -14,3 +14,5 @@ roleBinding: reader: {
 	}]
 	roleRef: name: "view"
 }
+
+#Namespace: "qa"

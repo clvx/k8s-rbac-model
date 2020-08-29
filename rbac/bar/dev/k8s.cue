@@ -14,3 +14,5 @@ roleBinding: admin: {
 	}]
 	roleRef: name: "admin"
 }
+
+#Namespace: "dev"

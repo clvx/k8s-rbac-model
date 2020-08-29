@@ -5,7 +5,7 @@ roleBinding: [ID=_]: {
 	kind:       "RoleBinding"
 	metadata: {
         name: string
-        namespace: "\( #Project )-\( ID)"
+        namespace: "\( #Project )-\( #Namespace)"
     }
 	subjects: [{
 		kind:     "Group"
@@ -37,3 +37,4 @@ clusterRoleBinding: [ID=_]: {
 }
 
 #Project: string
+#Namespace: string
