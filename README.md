@@ -133,3 +133,8 @@ configured.
 
     # Running access control tests
     PROJECT=bar make test
+
+## Slides
+
+- [DevOps Perú - Spanish](https://docs.google.com/presentation/d/1MpTRHOVlwNV9Q3_yk3pTaCTSnGPq7yms5MXPuuTBCpM/edit?usp=sharing)
+
