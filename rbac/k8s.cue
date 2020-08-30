@@ -1,5 +1,45 @@
-package rbac
+package kube
 
+<<<<<<< HEAD:rbac/k8s.cue
+roleBinding: [ID=_]: {
+	apiVersion: "rbac.authorization.k8s.io/v1"
+	kind:       "RoleBinding"
+	metadata: {
+        name: string
+        namespace: "\( #Project )-\( #Namespace)"
+    }
+	subjects: [{
+		kind:     "Group"
+		name:     string
+		apiGroup: "rbac.authorization.k8s.io"
+	}]
+	roleRef: {
+		kind:     "ClusterRole"
+		name:     string
+		apiGroup: "rbac.authorization.k8s.io"
+	}
+}
+
+clusterRoleBinding: [ID=_]: {
+	apiVersion: "rbac.authorization.k8s.io/v1"
+	kind:       "ClusterRoleBinding"
+	metadata: name: string
+	subjects: [{
+		kind:     "Group"
+		name:     string
+		apiGroup: "rbac.authorization.k8s.io"
+	}]
+	roleRef: {
+		kind:     "ClusterRole"
+		name:     string
+		apiGroup: "rbac.authorization.k8s.io"
+	}
+
+}
+
+#Project: string
+#Namespace: string
+=======
 namespace: [ID=_]: {
 	apiVersion: "v1"
 	kind:       "Namespace"
@@ -48,3 +88,4 @@ namespace: [ID=_]: {
 //        namespace: string
 //    }
 //}
+>>>>>>> master:rbac/rbac.cue

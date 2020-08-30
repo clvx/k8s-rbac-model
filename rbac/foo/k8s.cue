@@ -1,0 +1,3 @@
+package kube
+
+#Project: "foo"
