@@ -1,7 +1,5 @@
 # Kubernetes RBAC Model
 
-### TODO
-
 This is a implementation of a RBAC model for a multi project multi tenant Kubernetes cluster.
 
 ## Current roles
@@ -101,7 +99,37 @@ To generate Kubernetes objects:
     project=
     namespace=
     # For cluster role bindings
-    cue cmd dump ./rbac/${project} > crb-${project}.yaml
+    cue cmd dumpy ./rbac/${project} > crb-${project}.yaml
 
     # For role bindings in a specific namespace
-    cue cmd dump ./rbac/${project}/${namespace} > rb-${project}-{namespace}.yaml
+    cue cmd dumpy ./rbac/${project}/${namespace} > rb-${project}-{namespace}.yaml
+
+## Usage 
+
+To use this project, the Kubernetes cluster *NEEDS* to have the authentication modules
+configured. 
+
+### Preparing files
+
+> Current implementation only supports Groups in `.subjects.name`.
+
+    # switch  <object_id> in .subjects.name for each k8s.cue file with your 
+    # group name.
+
+### Executing rules
+
+    export OUTPUT_FILE=rbac-objects.yaml
+    # Creating project environments
+    PROJECT=bar make bootstrap-ns
+
+    # Generating rbac objects
+    PROJECT=bar bootstrap-rb > ${OUTPUT_FILE}
+
+    # rbac-objects needs some clean up 
+    sed -i 's/^$/---/g' ${OUTPUT_FILE}
+
+    # Deploy objects
+    kubectl apply -f ${OUTPUT_FILE}
+
+    # Running access control tests
+    PROJECT=bar make test
